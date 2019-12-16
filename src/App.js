@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import Hello from './sayHello';
+import Tweet from './Tweet'
+import WorkFlowForm from './workflowform'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+  const [count, setCount] = useState(0)
+
+  const increments = () => {
+    setCount(count + 1);
+  }
+
+  const sayHello = () => {
+    alert("hello")
+  }
+  return(
+    <div className="app">
+      <WorkFlowForm/>
     </div>
-  );
+  )
 }
 
 export default App;
