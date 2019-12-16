@@ -4,35 +4,30 @@ import Button from 'react-bootstrap/Button';
 
 function WorkFlowForm() {
 
-  const [element, setElementNo] = useState([{id: 0}])
+  const [counter, setCounter] = useState(1);
 
-  let formElements = [1,2,3]
+  const incrementCounter = () => {
+    setCounter(counter + 1);
+    setElementNo(counterMap());
+  }
 
-  const createElements = () => {
-  // let formElements = []
-
-  // Outer loop to create parent
-      for (let i = 0; i < element; i++) {
-        let children = []
-        let controlIdentifier = "formBasicPassword" + i
-        let controlCheckbox = "formBasicCheckbox" + i
-
-        children.push(
-          <div>
-            <Form.Group controlId={controlIdentifier}>
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
-            </Form.Group>
-            <Form.Group controlId={controlCheckbox}>
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
-          </div>
-        )
-        //Create the parent and add the children
-        formElements.push({children})
-      }
-      return formElements
+  const counterMap = () => {
+    let counterList = [];
+    let i;
+    for(i = 1; i <= counter; i++ ) {
+      counterList.push({id: i})
     }
+    return counterList;
+  }
+
+  const [element, setElementNo] = useState(counterMap)
+
+  let formElements = [1,2,3];
+
+  const addWorkFlowElements = () => {
+
+  }
+
 
   return (
     <Form className="workFlowForm">
@@ -46,17 +41,6 @@ function WorkFlowForm() {
       </Form.Text>
     </Form.Group>
     {
-      // let list = []
-      // for(i = 0; i < element; i++) {
-      //   list.push(<div><Form.Group controlId={name}>
-      //     <Form.Label>Password</Form.Label>
-      //     <Form.Control type="password" placeholder="Password" />
-      //   </Form.Group>
-      //   <Form.Group controlId={name}>
-      //     <Form.Check type="checkbox" label="Check me out" />
-      //   </Form.Group></div>)
-      // }
-      // return list
       element.map(function(name, index){
       return (
         <div>
@@ -67,6 +51,9 @@ function WorkFlowForm() {
           <Form.Group className="d-inline-block p-2" controlId={name.id}>
             <Form.Label >Check me out</Form.Label>
             <Form.Check type="checkbox" />
+          </Form.Group>
+          <Form.Group className="d-inline-block p-2" controlId={name.id}>
+            <Button onClick={incrementCounter} variant="primary">+</Button>
           </Form.Group>
         </div>
     )})}
