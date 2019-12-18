@@ -31,35 +31,45 @@ function WorkFlowForm() {
 
   return (
     <Form className="workFlowForm">
-    <Form.Group controlId="formWorkFlowName">
-      <Form.Label>Workflow Name</Form.Label>
-      <div className="wokflowName col-md-5">
-        <Form.Control type="text" placeholder="Workflow" />
-      </div>
-      <Form.Text className="text-muted">
-        Use a descriptive name.
-      </Form.Text>
-    </Form.Group>
-    {
-      element.map(function(name, index){
-      return (
-        <div>
-          <Form.Group className="d-inline-block p-2" controlId={name.id}>
-            <Form.Label >Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-          <Form.Group className="d-inline-block p-2" controlId={name.id}>
-            <Form.Label >Check me out</Form.Label>
-            <Form.Check type="checkbox" />
-          </Form.Group>
-          <Form.Group className="d-inline-block p-2" controlId={name.id}>
-            <Button onClick={incrementCounter} variant="primary">+</Button>
-          </Form.Group>
+      <div className="container float-left">
+        <div className="row">
+        <Form.Group className="col-4" controlId="formWorkFlowName">
+          <Form.Label>Workflow Name</Form.Label>
+            <Form.Control type="text" placeholder="Workflow" />
+          <Form.Text className="text-muted">
+            Use a descriptive name.
+          </Form.Text>
+        </Form.Group>
         </div>
-    )})}
-    <Button variant="primary" type="submit">
-      Submit
-    </Button>
+      </div>
+      {
+        element.map(function(name, index){
+        return (
+          <div className="container float-left">
+            <div className="row">
+              <Form.Group className="col-4" controlId={"password" + name.id}>
+                <Form.Label >Sub Workflow Name</Form.Label>
+                <Form.Control type="password" placeholder="Password" />
+              </Form.Group>
+              <Form.Group className="col-2" controlId={name.id}>
+                <Form.Label >Hours</Form.Label>
+                <Form.Control type="text" placeholder="0"/>
+              </Form.Group>
+              <Form.Group className="col-2" controlId={name.id}>
+                <Form.Label >Mins</Form.Label>
+                <Form.Control type="text" placeholder="0" />
+              </Form.Group>
+              <Form.Group className="col-1 d-flex align-items-end flex-column" controlId={name.id}>
+                <Button className="mt-auto" onClick={incrementCounter} variant="primary">+</Button>
+              </Form.Group>
+            </div>
+          </div>
+      )})}
+    <div className="inline-block">
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </div>
   </Form>
   )
 };
